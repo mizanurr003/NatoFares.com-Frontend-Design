@@ -1,0 +1,812 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="NATO Travel Hub: Exclusive discounts for military personnel and veterans on flights, hotels, and cars.">
+    <title>NATO Travel Hub | Military & Veteran Travel Discounts</title>
+    <script src="../../3.4.17"></script>
+    <script src="../../lucide%400.544.0/dist/umd/lucide.min.js"></script>
+    <style>
+        @import url('../../css2');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1a202c;
+        }
+
+        .nato-blue {
+            background-color: #004d99;
+            color: white;
+        }
+
+        .nato-white {
+            background-color: #ffffff;
+            color: #1a202c;
+        }
+
+        .nato-gray {
+            background-color: #cccccc;
+            color: #1a202c;
+        }
+
+        .nato-gold {
+            background-color: #FFD700;
+            color: #1a202c;
+        }
+
+        .flag-icon {
+            width: 24px;
+            height: 16px;
+            object-fit: cover;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 100%);
+        }
+
+        .card-shadow {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .card-shadow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .input-field {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #cbd5e0;
+            font-size: 0.95rem;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            background-color: white;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #004d99;
+            box-shadow: 0 0 0 2px rgba(0, 77, 153, 0.2);
+        }
+
+        .btn-primary {
+            background-color: #004d99;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: #003366;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: #e2e8f0;
+            color: #2d3748;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .btn-secondary:hover {
+            background-color: #cbd5e0;
+        }
+
+        .tab-button {
+            padding: 0.6rem 1.2rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        }
+
+        .tab-button.active {
+            background-color: #004d99;
+            color: white;
+            box-shadow: 0 2px 6px rgba(0, 77, 153, 0.3);
+        }
+
+        .tab-button:not(.active):hover {
+            background-color: #edf2f7;
+            color: #004d99;
+        }
+
+        .dropdown-menu {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+            pointer-events: none;
+        }
+
+        .dropdown-menu.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+    <header class="bg-white shadow-sm py-4 fixed w-full z-50">
+        <div class="container mx-auto flex justify-between items-center px-4 md:px-8">
+            <a href="#" class="flex items-center space-x-2">
+                <div class="w-8 h-8 flex items-center justify-center nato-blue rounded-full text-white font-bold">N</div>
+                <span class="text-xl font-bold text-gray-900">NATO Travel Hub</span>
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#" class="text-gray-600 hover:text-nato-blue transition-colors">Flights</a>
+                <a href="#" class="text-gray-600 hover:text-nato-blue transition-colors">Hotels</a>
+                <a href="#" class="text-gray-600 hover:text-nato-blue transition-colors">Car Rentals</a>
+                <a href="#" class="text-gray-600 hover:text-nato-blue transition-colors">Packages</a>
+                <div class="relative group">
+                    <button class="flex items-center space-x-1 text-gray-600 hover:text-nato-blue focus:outline-none">
+                        <i data-lucide="globe" class="w-5 h-5"></i>
+                        <span>English</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                    <div class="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg py-2 dropdown-menu group-hover:show">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Français</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Deutsch</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Español</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Italiano</a>
+                    </div>
+                </div>
+                <button class="btn-secondary flex items-center space-x-2 px-4 py-2 rounded-full border border-gray-300 hover:border-nato-blue" onclick="openLoginModal()">
+                    <i data-lucide="user" class="w-5 h-5"></i>
+                    <span>Login</span>
+                </button>
+            </nav>
+
+            <button class="md:hidden text-gray-600 focus:outline-none" onclick="toggleMobileMenu()">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-4 px-4 space-y-4 hidden">
+            <a href="#" class="block text-gray-700 hover:text-nato-blue">Flights</a>
+            <a href="#" class="block text-gray-700 hover:text-nato-blue">Hotels</a>
+            <a href="#" class="block text-gray-700 hover:text-nato-blue">Car Rentals</a>
+            <a href="#" class="block text-gray-700 hover:text-nato-blue">Packages</a>
+            <div class="relative">
+                <button class="flex items-center space-x-1 text-gray-700 hover:text-nato-blue focus:outline-none w-full justify-between" onclick="toggleLanguageDropdown('mobile-language-dropdown')">
+                    <div class="flex items-center space-x-1">
+                        <i data-lucide="globe" class="w-5 h-5"></i>
+                        <span>English</span>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                </button>
+                <div id="mobile-language-dropdown" class="absolute left-0 mt-2 w-full bg-gray-50 rounded-lg shadow-inner py-2 hidden">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Français</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Deutsch</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Español</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Italiano</a>
+                </div>
+            </div>
+            <button class="btn-primary w-full flex items-center justify-center space-x-2" onclick="openLoginModal()">
+                <i data-lucide="user" class="w-5 h-5"></i>
+                <span>Login</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <!-- Hero Section -->
+        <section class="hero-bg py-16 md:py-24 text-center">
+            <div class="container mx-auto px-4 md:px-8 max-w-4xl">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-nato-blue leading-tight mb-4 scroll-reveal">
+                    Unlock Exclusive Travel Savings for NATO Heroes
+                </h1>
+                <p class="text-lg md:text-xl text-gray-700 mb-8 scroll-reveal" style="transition-delay: 0.1s;">
+                    The premier platform for military personnel, veterans, and their families to access special
+                    discounts on flights, hotels, and car rentals across the NATO alliance and beyond.
+                </p>
+
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-xl border border-gray-200 w-full max-w-5xl mx-auto scroll-reveal" style="transition-delay: 0.2s;">
+                    <div class="flex justify-center flex-wrap gap-3 mb-6">
+                        <button class="tab-button active flex items-center space-x-2" data-tab="flights">
+                            <i data-lucide="plane" class="w-5 h-5"></i>
+                            <span>Flights</span>
+                        </button>
+                        <button class="tab-button flex items-center space-x-2" data-tab="hotels">
+                            <i data-lucide="hotel" class="w-5 h-5"></i>
+                            <span>Hotels</span>
+                        </button>
+                        <button class="tab-button flex items-center space-x-2" data-tab="cars">
+                            <i data-lucide="car" class="w-5 h-5"></i>
+                            <span>Cars</span>
+                        </button>
+                        <button class="tab-button flex items-center space-x-2" data-tab="packages">
+                            <i data-lucide="package" class="w-5 h-5"></i>
+                            <span>Packages</span>
+                        </button>
+                    </div>
+
+                    <!-- Flight Search Tab -->
+                    <div id="flights-tab-content" class="tab-content">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                            <div class="relative">
+                                <i data-lucide="map-pin" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                <input type="text" placeholder="Origin" class="input-field w-full pl-10 focus:border-nato-blue" value="JFK - New York (US)">
+                            </div>
+                            <div class="relative">
+                                <i data-lucide="map-pin" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                <input type="text" placeholder="Destination" class="input-field w-full pl-10 focus:border-nato-blue">
+                            </div>
+                            <div class="relative">
+                                <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                <input type="text" placeholder="Departure Date" class="input-field w-full pl-10 focus:border-nato-blue datepicker" readonly="">
+                            </div>
+                            <div class="relative">
+                                <i data-lucide="users" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                <input type="text" placeholder="1 Traveler, Economy" class="input-field w-full pl-10 focus:border-nato-blue">
+                            </div>
+                        </div>
+                        <button class="btn-primary w-full md:w-auto px-8">
+                            <i data-lucide="search" class="w-5 h-5 mr-2 inline-block"></i>
+                            Find Flights
+                        </button>
+                    </div>
+
+                    <!-- Hotel Search Tab (Hidden by default) -->
+                    <div id="hotels-tab-content" class="tab-content hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                            <div class="relative lg:col-span-2">
+                                <i data-lucide="map-pin" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                <input type="text" placeholder="City, Landmark, or Address" class="input-field w-full pl-10 focus:border-nato-blue">
+                            </div>
+                            <div class="relative">
+                                <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                <input type="text" placeholder="Check-in - Check-out" class="input-field w-full pl-10 focus:border-nato-blue datepicker" readonly="">
+                            </div>
+                            <div class="relative">
+                                <i data-lucide="door-open" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                <input type="text" placeholder="2 Adults, 0 Children, 1 Room" class="input-field w-full pl-10 focus:border-nato-blue">
+                            </div>
+                        </div>
+                        <button class="btn-primary w-full md:w-auto px-8">
+                            <i data-lucide="search" class="w-5 h-5 mr-2 inline-block"></i>
+                            Find Hotels
+                        </button>
+                    </div>
+
+                    <!-- Car Search Tab (Hidden by default) -->
+                    <div id="cars-tab-content" class="tab-content hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                            <div class="relative lg:col-span-2">
+                                <i data-lucide="map-pin" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                <input type="text" placeholder="Pick-up Location" class="input-field w-full pl-10 focus:border-nato-blue">
+                            </div>
+                            <div class="relative">
+                                <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                <input type="text" placeholder="Pick-up Date & Time" class="input-field w-full pl-10 focus:border-nato-blue datepicker" readonly="">
+                            </div>
+                            <div class="relative">
+                                <i data-lucide="calendar-off" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                <input type="text" placeholder="Drop-off Date & Time" class="input-field w-full pl-10 focus:border-nato-blue datepicker" readonly="">
+                            </div>
+                        </div>
+                        <button class="btn-primary w-full md:w-auto px-8">
+                            <i data-lucide="search" class="w-5 h-5 mr-2 inline-block"></i>
+                            Find Cars
+                        </button>
+                    </div>
+
+                    <!-- Packages Search Tab (Hidden by default) -->
+                    <div id="packages-tab-content" class="tab-content hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                            <div class="relative">
+                                <i data-lucide="plane" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                <input type="text" placeholder="Origin City (Flight)" class="input-field w-full pl-10 focus:border-nato-blue">
+                            </div>
+                            <div class="relative">
+                                <i data-lucide="hotel" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                <input type="text" placeholder="Destination City (Hotel)" class="input-field w-full pl-10 focus:border-nato-blue">
+                            </div>
+                            <div class="relative">
+                                <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                <input type="text" placeholder="Travel Dates" class="input-field w-full pl-10 focus:border-nato-blue datepicker" readonly="">
+                            </div>
+                            <div class="relative">
+                                <i data-lucide="users" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                                <input type="text" placeholder="2 Adults, 1 Room" class="input-field w-full pl-10 focus:border-nato-blue">
+                            </div>
+                        </div>
+                        <button class="btn-primary w-full md:w-auto px-8">
+                            <i data-lucide="search" class="w-5 h-5 mr-2 inline-block"></i>
+                            Find Packages
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NATO Member Flags Section -->
+        <section class="py-12 bg-white scroll-reveal">
+            <div class="container mx-auto px-4 md:px-8 text-center">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Serving All NATO Member Nations</h2>
+                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-x-4 gap-y-6">
+                    <!-- Placeholder flags, arranged to fit a good aesthetic grid -->
+                    <div class="flex flex-col items-center animate-pulse-slow" style="animation-delay: 0.1s;">
+                        <div class="w-16 h-10 bg-gray-200 rounded-md mb-2 flex items-center justify-center text-gray-500 text-xs flag-placeholder">
+                            <img src="../../w2560/us.png" alt="United States Flag" class="flag-icon w-full h-full">
+                        </div>
+                        <span class="text-sm text-gray-600">USA</span>
+                    </div>
+                    <div class="flex flex-col items-center animate-pulse-slow" style="animation-delay: 0.2s;">
+                        <div class="w-16 h-10 bg-gray-200 rounded-md mb-2 flex items-center justify-center text-gray-500 text-xs flag-placeholder">
+                            <img src="../../w2560/gb.png" alt="United Kingdom Flag" class="flag-icon w-full h-full">
+                        </div>
+                        <span class="text-sm text-gray-600">UK</span>
+                    </div>
+                    <div class="flex flex-col items-center animate-pulse-slow" style="animation-delay: 0.3s;">
+                        <div class="w-16 h-10 bg-gray-200 rounded-md mb-2 flex items-center justify-center text-gray-500 text-xs flag-placeholder">
+                            <img src="../../w2560/ca.png" alt="Canada Flag" class="flag-icon w-full h-full">
+                        </div>
+                        <span class="text-sm text-gray-600">Canada</span>
+                    </div>
+                    <div class="flex flex-col items-center animate-pulse-slow" style="animation-delay: 0.4s;">
+                        <div class="w-16 h-10 bg-gray-200 rounded-md mb-2 flex items-center justify-center text-gray-500 text-xs flag-placeholder">
+                            <img src="../../w2560/fr.png" alt="France Flag" class="flag-icon w-full h-full">
+                        </div>
+                        <span class="text-sm text-gray-600">France</span>
+                    </div>
+                    <div class="flex flex-col items-center animate-pulse-slow" style="animation-delay: 0.5s;">
+                        <div class="w-16 h-10 bg-gray-200 rounded-md mb-2 flex items-center justify-center text-gray-500 text-xs flag-placeholder">
+                            <img src="../../w2560/de.png" alt="Germany Flag" class="flag-icon w-full h-full">
+                        </div>
+                        <span class="text-sm text-gray-600">Germany</span>
+                    </div>
+                    <div class="flex flex-col items-center animate-pulse-slow" style="animation-delay: 0.6s;">
+                        <div class="w-16 h-10 bg-gray-200 rounded-md mb-2 flex items-center justify-center text-gray-500 text-xs flag-placeholder">
+                            <img src="../../w2560/it.png" alt="Italy Flag" class="flag-icon w-full h-full">
+                        </div>
+                        <span class="text-sm text-gray-600">Italy</span>
+                    </div>
+                    <div class="flex flex-col items-center animate-pulse-slow" style="animation-delay: 0.7s;">
+                        <div class="w-16 h-10 bg-gray-200 rounded-md mb-2 flex items-center justify-center text-gray-500 text-xs flag-placeholder">
+                            <img src="../../w2560/es.png" alt="Spain Flag" class="flag-icon w-full h-full">
+                        </div>
+                        <span class="text-sm text-gray-600">Spain</span>
+                    </div>
+                    <div class="flex flex-col items-center animate-pulse-slow" style="animation-delay: 0.8s;">
+                        <div class="w-16 h-10 bg-gray-200 rounded-md mb-2 flex items-center justify-center text-gray-500 text-xs flag-placeholder">
+                            <img src="../../w2560/tr.png" alt="Turkey Flag" class="flag-icon w-full h-full">
+                        </div>
+                        <span class="text-sm text-gray-600">Turkey</span>
+                    </div>
+                    <div class="flex flex-col items-center animate-pulse-slow" style="animation-delay: 0.9s;">
+                        <div class="w-16 h-10 bg-gray-200 rounded-md mb-2 flex items-center justify-center text-gray-500 text-xs flag-placeholder">
+                            <img src="../../w2560/pl.png" alt="Poland Flag" class="flag-icon w-full h-full">
+                        </div>
+                        <span class="text-sm text-gray-600">Poland</span>
+                    </div>
+                    <div class="flex flex-col items-center animate-pulse-slow" style="animation-delay: 1.0s;">
+                        <div class="w-16 h-10 bg-gray-200 rounded-md mb-2 flex items-center justify-center text-gray-500 text-xs flag-placeholder">
+                            <img src="../../w2560/nl.png" alt="Netherlands Flag" class="flag-icon w-full h-full">
+                        </div>
+                        <span class="text-sm text-gray-600">Netherlands</span>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-500 mt-8">And all other proud NATO member countries.</p>
+            </div>
+        </section>
+
+        <!-- Featured Destinations -->
+        <section class="py-16 bg-blue-50 scroll-reveal">
+            <div class="container mx-auto px-4 md:px-8">
+                <h2 class="text-3xl font-bold text-gray-900 text-center mb-10">Popular Destinations & Deals</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden card-shadow group">
+                        <div class="relative h-48 bg-gray-300 flex items-center justify-center text-gray-500">
+                            <img src="../../images/landing/30891.jpg" alt="Honolulu Hawaii" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <h3 class="absolute bottom-4 left-4 text-white text-xl font-semibold">Honolulu, Hawaii</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-700 mb-4">Discover paradise with exclusive military discounts on flights
+                                and hotels. Perfect for a relaxing getaway!</p>
+                            <a href="#" class="text-nato-blue font-semibold hover:underline flex items-center group-hover:translate-x-1 transition-transform">
+                                View Deals
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden card-shadow group">
+                        <div class="relative h-48 bg-gray-300 flex items-center justify-center text-gray-500">
+                            <img src="../../images/landing/30911.jpg" alt="Bavaria - Germany" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <h3 class="absolute bottom-4 left-4 text-white text-xl font-semibold">Bavaria, Germany</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-700 mb-4">Experience historic castles and vibrant culture. Special offers
+                                for European military families.</p>
+                            <a href="#" class="text-nato-blue font-semibold hover:underline flex items-center group-hover:translate-x-1 transition-transform">
+                                Explore Now
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden card-shadow group">
+                        <div class="relative h-48 bg-gray-300 flex items-center justify-center text-gray-500">
+                            <img src="../../images/landing/30916.jpg" alt="London U.K." class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <h3 class="absolute bottom-4 left-4 text-white text-xl font-semibold">London, UK</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-700 mb-4">The vibrant heart of the UK awaits. Find exclusive deals on
+                                flights and stays for your next adventure.</p>
+                            <a href="#" class="text-nato-blue font-semibold hover:underline flex items-center group-hover:translate-x-1 transition-transform">
+                                Plan Your Trip
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Benefits Section -->
+        <section class="py-16 bg-white scroll-reveal">
+            <div class="container mx-auto px-4 md:px-8">
+                <h2 class="text-3xl font-bold text-gray-900 text-center mb-10">Why Choose NATO Travel Hub?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="flex flex-col items-center text-center p-6 rounded-lg bg-blue-50 border border-blue-100 card-shadow">
+                        <div class="p-4 rounded-full bg-nato-blue text-white mb-4">
+                            <i data-lucide="banknote" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Unbeatable Savings</h3>
+                        <p class="text-gray-700">Access exclusive military and veteran discounts on flights, hotels, and
+                            car rentals worldwide.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 rounded-lg bg-blue-50 border border-blue-100 card-shadow">
+                        <div class="p-4 rounded-full bg-nato-blue text-white mb-4">
+                            <i data-lucide="clock" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Seamless Booking</h3>
+                        <p class="text-gray-700">Our intuitive platform makes finding and booking your next trip quick
+                            and easy.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 rounded-lg bg-blue-50 border border-blue-100 card-shadow">
+                        <div class="p-4 rounded-full bg-nato-blue text-white mb-4">
+                            <i data-lucide="shield-check" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Verified Discounts</h3>
+                        <p class="text-gray-700">We partner directly with providers to ensure your discounts are
+                            legitimate and honored.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 rounded-lg bg-blue-50 border border-blue-100 card-shadow">
+                        <div class="p-4 rounded-full bg-nato-blue text-white mb-4">
+                            <i data-lucide="heart" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Family-Friendly Options</h3>
+                        <p class="text-gray-700">Special consideration for military families, making travel together more
+                            affordable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-16 bg-blue-100 scroll-reveal">
+            <div class="container mx-auto px-4 md:px-8">
+                <h2 class="text-3xl font-bold text-gray-900 text-center mb-10">What Our Travelers Say</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-md border border-gray-200 card-shadow">
+                        <div class="flex items-center mb-4">
+                            <i data-lucide="star" class="w-5 h-5 fill-nato-gold stroke-nato-gold mr-1"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-nato-gold stroke-nato-gold mr-1"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-nato-gold stroke-nato-gold mr-1"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-nato-gold stroke-nato-gold mr-1"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-nato-gold stroke-nato-gold"></i>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">"MilitaryFares.com saved me a fortune on my last trip home. The
+                            process was so easy, and the discounts were incredible!"</p>
+                        <p class="font-semibold text-gray-800">- Steven S., Active Duty</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md border border-gray-200 card-shadow">
+                        <div class="flex items-center mb-4">
+                            <i data-lucide="star" class="w-5 h-5 fill-nato-gold stroke-nato-gold mr-1"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-nato-gold stroke-nato-gold mr-1"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-nato-gold stroke-nato-gold mr-1"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-nato-gold stroke-nato-gold mr-1"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-nato-gold stroke-nato-gold"></i>
+                        </div>
+                        <p class="text-gray-700 italic mb-4">"As a veteran, finding genuine travel deals can be tough. This
+                            site delivers every time. Highly recommended!"</p>
+                        <p class="font-semibold text-gray-800">- Christopher T., Veteran</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter CTA -->
+        <section class="py-16 bg-nato-blue text-white text-center scroll-reveal">
+            <div class="container mx-auto px-4 md:px-8 max-w-2xl">
+                <h2 class="text-3xl font-bold mb-4">Stay Connected, Stay Inspired!</h2>
+                <p class="text-lg mb-8">Sign up for our newsletter to receive the latest deals, travel tips, and exclusive
+                    offers directly to your inbox.</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <input type="email" placeholder="Your Email Address" class="input-field w-full sm:w-80 p-3 text-gray-800 border-none focus:ring-2 focus:ring-white">
+                    <button class="btn-primary nato-gold text-nato-blue hover:bg-yellow-400">
+                        Subscribe
+                        <i data-lucide="send" class="w-5 h-5 ml-2 inline-block"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-200 py-10">
+        <div class="container mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div>
+                <h3 class="font-bold text-lg mb-4 text-white">NATO Travel Hub</h3>
+                <p class="text-sm">Your dedicated partner for discounted military and veteran travel. Honoring your
+                    service with exceptional value.</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="#" class="text-gray-300 hover:text-nato-blue"><i data-lucide="facebook" class="w-6 h-6"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-nato-blue"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-nato-blue"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-nato-blue"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-bold text-lg mb-4 text-white">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-nato-blue transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-nato-blue transition-colors">Contact Support</a></li>
+                    <li><a href="#" class="hover:text-nato-blue transition-colors">FAQs</a></li>
+                    <li><a href="#" class="hover:text-nato-blue transition-colors">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold text-lg mb-4 text-white">Legal</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-nato-blue transition-colors">Terms & Conditions</a></li>
+                    <li><a href="#" class="hover:text-nato-blue transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-nato-blue transition-colors">Cookie Policy</a></li>
+                </ul>
+            </div>
+            <div class="md:col-span-3 lg:col-span-1">
+                <h3 class="font-bold text-lg mb-4 text-white">Contact Us</h3>
+                <p class="text-sm flex items-center mb-2">
+                    <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
+                    info@natotravelhub.com
+                </p>
+                <p class="text-sm flex items-center">
+                    <i data-lucide="phone" class="w-5 h-5 mr-2"></i>
+                    +1 (800) 123-4567
+                </p>
+                <div class="mt-6">
+                    <a href="#" class="inline-block bg-white text-gray-800 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100">
+                        <i data-lucide="check-circle" class="w-4 h-4 mr-2 inline-block"></i>
+                        Verify Military Status
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
+            © 2025 NATO Travel Hub. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[9999] hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 relative">
+            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800" onclick="closeLoginModal()">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Login to Your Account</h3>
+            <form>
+                <div class="mb-4">
+                    <label for="login-email" class="block text-gray-700 text-sm font-semibold mb-2">Email:</label>
+                    <input type="email" id="login-email" class="input-field w-full" placeholder="you@example.com">
+                </div>
+                <div class="mb-6">
+                    <label for="login-password" class="block text-gray-700 text-sm font-semibold mb-2">Password:</label>
+                    <input type="password" id="login-password" class="input-field w-full" placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn-primary w-full">Sign In</button>
+                <p class="text-center text-sm text-gray-600 mt-4">
+                    Don't have an account? <a href="#" class="text-nato-blue hover:underline" onclick="openSignupModal(); return false;">Sign Up</a>
+                </p>
+                <p class="text-center text-sm text-gray-600 mt-2">
+                    <a href="#" class="text-nato-blue hover:underline" onclick="openForgotPasswordModal(); return false;">Forgot Password?</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[9999] hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 relative">
+            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800" onclick="closeSignupModal()">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Create Your Account</h3>
+            <form>
+                <div class="mb-4">
+                    <label for="signup-email" class="block text-gray-700 text-sm font-semibold mb-2">Email:</label>
+                    <input type="email" id="signup-email" class="input-field w-full" placeholder="you@example.com">
+                </div>
+                <div class="mb-4">
+                    <label for="signup-password" class="block text-gray-700 text-sm font-semibold mb-2">Password:</label>
+                    <input type="password" id="signup-password" class="input-field w-full" placeholder="••••••••">
+                </div>
+                <div class="mb-4">
+                    <label for="signup-firstname" class="block text-gray-700 text-sm font-semibold mb-2">First Name:</label>
+                    <input type="text" id="signup-firstname" class="input-field w-full" placeholder="John">
+                </div>
+                <div class="mb-4">
+                    <label for="signup-lastname" class="block text-gray-700 text-sm font-semibold mb-2">Last Name:</label>
+                    <input type="text" id="signup-lastname" class="input-field w-full" placeholder="Doe">
+                </div>
+                <div class="mb-4">
+                    <label for="signup-military-status" class="block text-gray-700 text-sm font-semibold mb-2">Military Status:</label>
+                    <select id="signup-military-status" class="input-field w-full">
+                        <option value="">Select Status</option>
+                        <option value="ACTIVE DUTY">Active Duty</option>
+                        <option value="VETERAN">Military Veteran or Retiree</option>
+                        <option value="RESERVIST">Reservist or National Guard</option>
+                        <option value="GOLD FAMILY">Gold Star Family</option>
+                        <option value="MILITARY FAMILY">Military Family</option>
+                    </select>
+                </div>
+                <div class="flex items-center mb-6">
+                    <input type="checkbox" id="terms-agree" class="h-4 w-4 text-nato-blue rounded">
+                    <label for="terms-agree" class="ml-2 block text-sm text-gray-900">I agree to the <a href="#" class="text-nato-blue hover:underline">Terms & Conditions</a></label>
+                </div>
+                <button type="submit" class="btn-primary w-full">Sign Up</button>
+                <p class="text-center text-sm text-gray-600 mt-4">
+                    Already have an account? <a href="#" class="text-nato-blue hover:underline" onclick="openLoginModal(); return false;">Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[9999] hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md p-6 relative">
+            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800" onclick="closeForgotPasswordModal()">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Reset Your Password</h3>
+            <form>
+                <div class="mb-4">
+                    <label for="reset-email" class="block text-gray-700 text-sm font-semibold mb-2">Email:</label>
+                    <input type="email" id="reset-email" class="input-field w-full" placeholder="you@example.com">
+                </div>
+                <button type="submit" class="btn-primary w-full">Send Reset Link</button>
+            </form>
+            <p class="text-center text-sm text-gray-600 mt-4">
+                Remembered your password? <a href="#" class="text-nato-blue hover:underline" onclick="openLoginModal(); return false;">Login</a>
+            </p>
+        </div>
+    </div>
+
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Language Dropdown Toggle
+        function toggleLanguageDropdown(id) {
+            const dropdown = document.getElementById(id);
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Tab Switching Logic
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
+                document.getElementById(`${button.dataset.tab}-tab-content`).classList.remove('hidden');
+            });
+        });
+
+        // Modals Logic
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.getElementById('signupModal').classList.add('hidden');
+            document.getElementById('forgotPasswordModal').classList.add('hidden');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+        }
+
+        function openSignupModal() {
+            document.getElementById('signupModal').classList.remove('hidden');
+            document.getElementById('loginModal').classList.add('hidden');
+            document.getElementById('forgotPasswordModal').classList.add('hidden');
+        }
+
+        function closeSignupModal() {
+            document.getElementById('signupModal').classList.add('hidden');
+        }
+
+        function openForgotPasswordModal() {
+            document.getElementById('forgotPasswordModal').classList.remove('hidden');
+            document.getElementById('loginModal').classList.add('hidden');
+            document.getElementById('signupModal').classList.add('hidden');
+        }
+
+        function closeForgotPasswordModal() {
+            document.getElementById('forgotPasswordModal').classList.add('hidden');
+        }
+
+        // Scroll Reveal Animation
+        const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        scrollRevealElements.forEach(el => observer.observe(el));
+
+
+        // Placeholder for a simple date picker (e.g., flatpickr or custom logic)
+        // In a real project, you would integrate a library like Flatpickr or jQuery UI Datepicker
+        document.addEventListener('DOMContentLoaded', () => {
+            const datepickers = document.querySelectorAll('.datepicker');
+            datepickers.forEach(input => {
+                input.addEventListener('focus', () => {
+                    // Simulate a date picker opening
+                    console.log('Date picker would open for:', input.placeholder);
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>
